@@ -1,59 +1,40 @@
-/**
-  * API:
-  *   var val, anyVal;
-  *   ...
-  *   var variable = u(...);
-  * 
-  *   variable.is() - true when val == [null || undefined || 0 || "" || {} || [] || NaN]
-  *   variable.is(['object','string','number','boolean','NaN','array','date'])
-  *   ??? variable.is(anyVal) - true if link at one object (??) OR compare types of variables
-  *   ↑ OR ↓
-  *   variable.type() - return typeof val
-  *   variable.type(anyType) - return typeof(val)===anyType (lowercase before compare)
-  *
-  *   variable.keys() - if val is object - array of options
-  *   variable.keys(number) - equal variable.keys()[number];
-  *   ??? variable.keys(<string || array>) - return original object with only options from arguments
-  * 
-  *   variable.each(callback) - are you serios? you need docs fro understand this? :)
-  *   variable.length() - (??length - object||function) return array.length or number of keys in object
-  *   variable.equals(anyVal) - return JSON.stringify(val)===JSON.stringify(anyVal);
-  *   variable.like(anyVal) - compare object structure (only keys, not vlaues)
-  *   
-  *   variable.and(anyVal, {overwrite: true}) - объединение объектов
-  *   variable.or(anyVal) - пересечение объектов
-  *   variable.not(anyVal) - исключение пересечений объекта
-  *
-  */
- 
-var U = function(baseValue) {
-  if (!this) return;
-  this.init(baseValue);
-};
+function U(param) {
+  var variable = {
+    _value: param,
+    _type : typeof(param).toString().toLowerCase()
+    _typeExtend: null,
 
-U.prototype = {
-  init: function(value) {
-    this.param = {
-      value: value,
-      type: typeof(value)
+    _isExtendType: function() {
+      var self = this;
+      if (!this._type!=="object") return;
+      var val = this._value;
+
+      for (type in this._typeExtendValues) {
+        if (this._typeExtendValues.hasOwnProperty(type)) {
+          self._typeExtend = self._typeExtendValues[type]()
+        }
+      }
+    },
+
+    // get or compare basse types
+    type: function(compare) {
+      if (arguments.length==0) return this._type;
+      return this._type===compare;
+    },
+    
+    // get or compare extend types
+    is: function(compare) {
+      if (this._typeExtend===null) this._typeExtend = this._isExtendType();
+      if (arguments.length==0) return this._typeExtend;
+      return this._typeExtend===compare;
     }
-    console.log(this);
-  },
-
-  type: function(compare) {
-    return arguments.length===0 ? this.param.type
-        : this.param.type===compare.toLowerCase(); 
   }
+
+  return variable;
 }
 
-var u = window.u = function(value) {
-  return (new U(value));
-};
+var testObject = {param1: "val", param2: "type"},
+    testArray = [1, "config", 4,6],
+    testString = "wetrwrewg3242#$Q$234223f234!@#$!@";
 
-var sample = {
-  param1: 'value1',
-  param2: 'value2'
-}
 
-var ex = u(sample);
-console.log(ex.type('array'));
