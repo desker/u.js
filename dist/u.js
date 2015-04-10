@@ -1,26 +1,21 @@
-(function(window, undefined){
+(function(){
   'use strict';
 
-  var VERSION = "0.1.0",
-      root = this;
-
-
-  var U = {
-    init: function() {
-
+var
+    VERSION = "@VERSION";
+    U = function() {
+      return new U.fn.init(arguments);
+    };
+  
+    U.fn = U.prototype = {
+      version: VERSION,
+      constructor: U
+      // Public API
     }
-  };
 
-  U.version = VERSION;
 
-  var u = window.u = U.init({
-    type: {
-      "array": Array.isArray,
-      "date" : function(val) { return val instanceof Date; }
-    }
-  });
 
-})(window, undefined);
+})();
 
 // function U(param) {
 
