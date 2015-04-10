@@ -1,0 +1,34 @@
+{
+  "name": "u.js",
+  "version": "0.1.0",
+  "description": "Microframework for easy manipulation with variables",
+  "main": "dist/u.min.js",
+  "directories": {
+    "example": "examples",
+    "test": "test"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/desker/u.js"
+  },
+  "author": "Serg Desker",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/desker/u.js/issues"
+  },
+  "homepage": "https://github.com/desker/u.js",
+  "devDependencies": {
+    "browser-sync": "^2.5.3",
+    "gulp": "^3.8.11",
+    "gulp-concat": "^2.5.2",
+    "gulp-jshint": "^1.10.0",
+    "gulp-load-plugins": "^0.9.0",
+    "gulp-notify": "^2.2.0",
+    "gulp-plumber": "^1.0.0",
+    "gulp-rename": "^1.2.2",
+    "gulp-uglify": "^1.1.0"
+  }
+}

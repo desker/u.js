@@ -1,0 +1,17 @@
+{
+  "name": "u.js",
+  "version": "0.1.0",
+  "homepage": "https://github.com/desker/u.js",
+  "authors": [
+    "Serg Desker <desker.me@gmail.com>"
+  ],
+  "main": "dist/u.min.js",
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
