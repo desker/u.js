@@ -1,3 +1,5 @@
+var version = require('./package.json').version;
+
 var gulp = require('gulp'),
     $ = require('gulp-load-plugins')(),
     bsync = require('browser-sync'),
@@ -21,7 +23,8 @@ gulp.task('js:lint', function() {
 
 gulp.task('js:concat', function() {
   return gulp.src('./src/*.js')
-    .pipe($.plumber({errorHandler: $.notify("Error js:concat")}))  
+    .pipe($.plumber({errorHandler: $.notify("Error js:concat")}))
+    .pipe($.replace("@VERSION", version))
     .pipe($.concat('u.js'))
     .pipe(gulp.dest('./dist'));
 });
