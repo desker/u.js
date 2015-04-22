@@ -1,38 +1,40 @@
-(function(root){
+(function(rootObject){
   'use strict';
-  
 
-  var U = function(options) {
-      return new U.fn.init(options);
-    };
-  
-  U.fn = U.prototype = {
-    version: "0.1.0"
-  , constructor: U
+  var
+    root = rootObject;
 
-  , init: function(options) {
-      if (!this) return;
+  function U(val) {
+    if (!this) return new U(val);
 
-      U._nativeType = options.nativeTypes;
-      U._customType = options.customTypes;
+    return this.init(val);  
+  }
+
+  U.prototype = {
+
+    _version: '0.1.0',
+
+    init: function(val) {
+      this._param = val;
+      return this;
+    },
+
+    type: function(comparator, cb) {
+      if (!this._type) this._type = toLower(typeof(this._param));
+      if (arguments.length===0) return this._type;
       
+      return this;
+    },
 
-      this.type = function(compare) {
-        
-      };
-      console.log(U);
-      console.log(this);
+    is: function(comparator, cb) {
+      
     }
-    
+
   };
 
-  var u = root.u = U({
-    nativeTypes: ['string', 'boolean', 'number', 'function', 'object'],
-    customTypes: {
-      "array": Array.isArray,
-      "date" : function() { return (arguments[0] instanceof Date); }
-    }
-  });
+  var u = root.u = U;
+
+  u(5).type(function(t) {console.log(t); });
 
 })(window);
 
