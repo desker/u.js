@@ -12,7 +12,7 @@
 
   U.prototype = {
 
-    _version: '0.1.0',
+    version: '0.1.0',
 
     init: function(val) {
       this._param = val;
@@ -27,7 +27,7 @@
     },
 
     is: function(comparator, cb) {
-      
+
     }
 
   };
